@@ -8,52 +8,61 @@
 import SwiftUI
 
 struct FormView: View {
-    @StateObject private var viewModel = FormViewModel()
+    @StateObject
+    var viewModel :  FormViewModel
+    @Environment(\.dismiss) private var dismiss
+    
     var body: some View {
         NavigationStack {
-            VStack{
-                Form {
+            Form {
+                Section {
                     TextField("First Name", text: $viewModel.firstName)
                     TextField("Last Name", text: $viewModel.lastName)
+                } header: {
+                    Text("Personal Info")
+                        .foregroundStyle(.black)
+                        .font(.callout)
+                        .bold()
+                }
+                .listRowBackground(Color.section1)
+                .listRowSeparatorTint(Color.black)
+                
+                Section {
                     TextField("Pet Name", text: $viewModel.petName)
                     TextField("Age", text: $viewModel.age)
                         .keyboardType(.numberPad)
+                } header: {
+                    Text("Pet Info")
+                        .foregroundStyle(.black)
+                        .font(.callout)
+                        .bold()
                 }
-                
-                Button(action:{
-                    viewModel.submitForm()
-                }) {
-                    if viewModel.isLoading {
-                        ProgressView()
-                            .progressViewStyle(CircularProgressViewStyle())
-                    } else {
-                        Text("Save")
-                            .frame(maxWidth: .infinity)
-                            .padding()
-                            .background(Color.blue)
-                            .foregroundColor(.white)
-                            .cornerRadius(10)
+                .listRowBackground(Color.section1)
+                .listRowSeparatorTint(Color.black)
+            }
+            .scrollContentBackground(.hidden)
+            .background(Color.darkgray)
+            .navigationTitle("Submit Data")
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button("Cancel") {
+                        dismiss()
                     }
+                    .foregroundStyle(.red)
                 }
-                .navigationTitle("Submit Data")
-            }
-            .alert("Error", isPresented: Binding(
-                get: { viewModel.error != nil },
-                set: { if !$0 { viewModel.error = nil } }
-            )) {
-                Button("OK", role: .cancel) {}
-            } message: {
-                Text(viewModel.error?.message ?? "Unknown error occurred")
-            }
-            .alert("Success", isPresented: $viewModel.isSuccess) {
-                Button("OK", role: .cancel) {}
-            } message: {
-                Text("Form submitted successfully!")
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button("Save") {
+                        viewModel.submitForm()
+                        viewModel.fetchData()
+                        dismiss()
+                    }
+                    .disabled(!viewModel.isFormValid || viewModel.isLoading)
+                }
             }
         }
     }
 }
 
 #Preview {
-    FormView()
+    FormView(viewModel: FormViewModel())
 }

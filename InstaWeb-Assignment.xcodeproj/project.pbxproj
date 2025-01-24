@@ -35,16 +35,6 @@
 			path = "InstaWeb-Assignment";
 			sourceTree = "<group>";
 		};
-		12A70BF42D3FE79500D880A1 /* InstaWeb-AssignmentTests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = "InstaWeb-AssignmentTests";
-			sourceTree = "<group>";
-		};
-		12A70BFE2D3FE79500D880A1 /* InstaWeb-AssignmentUITests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = "InstaWeb-AssignmentUITests";
-			sourceTree = "<group>";
-		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,8 +66,6 @@
 			isa = PBXGroup;
 			children = (
 				12A70BE22D3FE79300D880A1 /* InstaWeb-Assignment */,
-				12A70BF42D3FE79500D880A1 /* InstaWeb-AssignmentTests */,
-				12A70BFE2D3FE79500D880A1 /* InstaWeb-AssignmentUITests */,
 				12A70BE12D3FE79300D880A1 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -130,9 +118,6 @@
 			dependencies = (
 				12A70BF32D3FE79500D880A1 /* PBXTargetDependency */,
 			);
-			fileSystemSynchronizedGroups = (
-				12A70BF42D3FE79500D880A1 /* InstaWeb-AssignmentTests */,
-			);
 			name = "InstaWeb-AssignmentTests";
 			packageProductDependencies = (
 			);
@@ -152,9 +137,6 @@
 			);
 			dependencies = (
 				12A70BFD2D3FE79500D880A1 /* PBXTargetDependency */,
-			);
-			fileSystemSynchronizedGroups = (
-				12A70BFE2D3FE79500D880A1 /* InstaWeb-AssignmentUITests */,
 			);
 			name = "InstaWeb-AssignmentUITests";
 			packageProductDependencies = (
